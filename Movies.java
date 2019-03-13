@@ -8,7 +8,6 @@ class Film {
 	
 	private HashMap<String, Integer> movies = new HashMap<>(); // Catalogue of all movies in the series
 
-	// 
 	public int getNumber(String s) {
 		return movies.get(s);
 	}
