@@ -1,15 +1,14 @@
 import java.util.HashMap;
 import java.util.Set;
 
+/*
+ *	A 'Film' object is used as a movie series catalogue
+ */
 class Film {
+	
+	private HashMap<String, Integer> movies = new HashMap<>(); // Catalogue of all movies in the series
 
-	private String seriesName;
-	private HashMap<String, Integer> movies = new HashMap<>();
-
-	public Film(String seriesName) {
-		this.seriesName = seriesName;
-	}
-
+	// 
 	public int getNumber(String s) {
 		return movies.get(s);
 	}
@@ -25,17 +24,26 @@ class Film {
 
 public class Movies {
 
+	// List of movie series
 	public static String[] movieInput = {"Avengers", "Captain America", "Hulk"};
+	
+	// Map of the movie series names and their respective 'Film' catalogue objects
 	public static HashMap<String, Film> movieMap = new HashMap<>();
+	
+	// Reference to the Film object
 	public static Film currentFilm;
 
 	public static void main(String[] args) {
 
 		for (String s: movieInput) {
-			movieMap.put(s, new Film(s));
+			// Creates a new entry in the map with the series name as the key, and a new 'Film' catalogue object as the value
+			movieMap.put(s, new Film());
 		}
 
+		// Set the Film object reference to point to the Film object located at key = "Avengers"
 		currentFilm = movieMap.get("Avengers");
+		
+		// Add movies to the catalogue
 		currentFilm.addMovie("Movie1", 1);
 		currentFilm.addMovie("Movie2", 2);
 
@@ -47,9 +55,14 @@ public class Movies {
 		currentFilm.addMovie("Movie1", 5);
 		currentFilm.addMovie("Movie2", 6);
 
+		// Print out all data from all movie series
 		for (String s: movieInput) {
+			// Sets the current film to the movie at current iteration
 			currentFilm = movieMap.get(s);
+			
+			// Loops through all the movie titles located in the catalogue
 			for (String key: currentFilm.getKeys()) {
+				// Print the associated data with that movie title
 				System.out.println(currentFilm.getNumber(key));
 			}
 		}
